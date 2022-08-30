@@ -1,0 +1,31 @@
+.pantalla-completa {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-dark {
+    background-color: #16191c !important;
+}
+
+.bg-dark-x {
+    background-color: #1e2126;
+}
+
+.form-control,
+.btn {
+    min-height: 3.125rem;
+    line-height: initial;
+}
+
+.img-1 {
+    background-image: url('../../../assets/image/img-1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.img-2 {
+    background-image: url('../../../assets/image/img-2.jpg');
+    background-size: cover;
+    background-position: center;
+}
