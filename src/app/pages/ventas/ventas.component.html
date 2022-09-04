@@ -2,9 +2,21 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div class="text-end">
-                    <button class="btn btn-outline-primary">Buscar producto</button>
+                <div class="row">
+                    <input type="text" class="form-control text-center col-lg-6" (keyup.enter)="onKeyUp($event);"
+                        name="codigo" [(ngModel)]="codigo">
+                    <div class="col-lg-6 text-end">
+                        <button class="btn btn-outline-primary">Buscar producto</button>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
                 <div class="table-responsive mt-2 scroll">
                     <table class="table table-borderless">
                         <thead class="table-dark">
@@ -18,12 +30,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
+                            <tr *ngFor="let producto of mostrarProducto">
+                                <td class="text-center"> {{producto.codigo}} </td>
+                                <td class="text-center"> {{producto.nombre}} </td>
+                                <td class="text-center"> {{producto.cantidad}} </td>
                                 <!-- <td> </td> -->
-                                <td> </td>
+                                <td class="text-center"> {{producto.precio * producto.cantidad}} </td>
                                 <td class="text-center"> </td>
                             </tr>
                         </tbody>
@@ -32,6 +44,21 @@
             </div>
         </div>
     </div>
-
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-end">
+                    <label style="font-size: 25px;">Total</label>
+                </div>
+                <div class="text-end" style="font-size: 25px;"> {{total | currency}} </div>
+                <div class="mt-5" style="font-size: 35px;">
+                    <input type="text" [disabled]="mostrarProducto.length === 0" class="form-control" name="cambio" [(ngModel)]="cambio">
+                </div>
+                <div class="d-grid gap-2 mt-3">
+                    <button (click)="cobrarVenta();" class="btn btn-primary btn-block">Cobrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- <button class="btn btn-danger">Quitar producto</button> -->
 </div>
