@@ -1,1 +1,58 @@
-<p>dashboard works!</p>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form (ngSubmit)="buscarDatos();" autocomplete="off" [formGroup]="buscarVenta">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input type="date" formControlName="inicio" class="form-control">
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="date" formControlName="fin" class="form-control">
+                        </div>
+                        <div class="col-lg-4 text-end">
+                            <button class="btn btn-success" type="submit"><i
+                                    class="fas fa-search mr-1"></i>Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive mt-2 scroll">
+                    <table class="table table-borderless ">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="color: white;" class="text-center">Total</th>
+                                <th style="color: white;" class="text-center">Fecha</th>
+                                <th style="color: white;" class="text-center">ticket</th>
+                                <th style="color: white;" class="text-center">Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let venta of mostrarVentas">
+                                <td class="text-center"> {{venta.total}} </td>
+                                <td class="text-center"> {{venta.fecha | date: 'dd/MM/yyyy'}} </td>
+                                <td class="text-center"> {{venta.nombre_tickets}} </td>
+                                <td> {{ venta.usuario.nombre }} {{venta.usuario.apellidos}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+</div>

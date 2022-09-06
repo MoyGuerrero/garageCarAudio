@@ -8,7 +8,7 @@ import { PagesComponent } from './pages.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { SharedModule } from '../shared/shared.module';
 import { BarcodeScannerLivestreamModule } from 'ngx-barcode-scanner';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     BarcodeScannerLivestreamModule
   ]
 })

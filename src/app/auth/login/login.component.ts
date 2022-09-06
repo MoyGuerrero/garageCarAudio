@@ -25,7 +25,6 @@ export class LoginComponent {
 
   login() {
     this.formSubmitted = true;
-    console.log(this.regiterLogin.value);
 
     if (this.regiterLogin.invalid) {
       return;

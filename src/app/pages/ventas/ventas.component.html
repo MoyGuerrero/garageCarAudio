@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive mt-2 scroll">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless ">
                         <thead class="table-dark">
                             <tr>
                                 <th style="color: white;" class="text-center">Codigo</th>
@@ -52,10 +52,11 @@
                 </div>
                 <div class="text-end" style="font-size: 25px;"> {{total | currency}} </div>
                 <div class="mt-5" style="font-size: 35px;">
-                    <input type="text" [disabled]="mostrarProducto.length === 0" class="form-control" name="cambio" [(ngModel)]="cambio">
+                    <input type="text" [disabled]="mostrarProducto.length === 0" class="form-control" name="cambio"
+                        [(ngModel)]="cambio">
                 </div>
                 <div class="d-grid gap-2 mt-3">
-                    <button (click)="cobrarVenta();" class="btn btn-primary btn-block">Cobrar</button>
+                    <button (click)="cobrarVenta();"  class="btn btn-primary btn-block">Cobrar</button>
                 </div>
             </div>
         </div>

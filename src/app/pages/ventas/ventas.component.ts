@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
 import { ProductosService } from '../../services/productos.service';
 
@@ -21,14 +22,16 @@ export class VentasComponent implements OnInit {
   public codigo: string = '';
   public total: number = 0;
   public cambio: number = 0;
+  public idusuario!: number;
 
   public mostrarProducto: mostrarProductos[] = [];
 
 
-  constructor(private productoServices: ProductosService) { }
+  constructor(private productoServices: ProductosService, private usuarioServices: UsuariosService) { }
 
 
   ngOnInit(): void {
+    this.idusuario = this.usuarioServices.usuario.id;
   }
 
 
@@ -56,7 +59,6 @@ export class VentasComponent implements OnInit {
           if (existeProducto != undefined) {
             existeProducto.cantidad += 1;
 
-            console.log(existeProducto.precio);
             this.total = this.total + existeProducto.precio;
           } else {
             let datos = { id: 0, codigo: '', nombre: '', cantidad: 0, precio: 0 }
@@ -69,14 +71,41 @@ export class VentasComponent implements OnInit {
             this.mostrarProducto.push(datos);
           }
         }
-      }
+      },
+      error: err => Swal.fire('Error', err.error.msg, 'error')
     });
     this.codigo = '';
   }
 
   cobrarVenta() {
-    this.productoServices.cobrarVenta(this.mostrarProducto);
-    this.mostrarProducto = [];
-    this.total = 0;
+    if (this.mostrarProducto.length === 0) return;
+    if (this.total > this.cambio) {
+      Swal.fire('Advertencia', 'No se acompleta para el pago', 'warning');
+      return;
+    }
+    this.productoServices.cobrarVenta(this.mostrarProducto, this.cambio, this.idusuario).subscribe({
+      next: (resp: any) => {
+        Swal.fire({
+          title: '¿Desea mprimir el ticket?',
+          text: `Cambio ${resp.cambio}`,
+          icon: 'success',
+          showCancelButton: true,
+          confirmButtonText: 'Imprimir',
+          cancelButtonText: 'No imprimir'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.mostrarProducto = [];
+            this.total = 0;
+            this.cambio = 0;
+          } else {
+            this.mostrarProducto = [];
+            this.total = 0;
+            this.cambio = 0;
+          }
+        })
+      },
+      error: err => Swal.fire('Error', err.error.msg, 'error')
+    });
+
   }
 }

@@ -38,7 +38,7 @@ export class ProductosService {
     )
   }
 
-  cobrarVenta(productos: any[]) {
-    console.log(productos);
+  cobrarVenta(productos: any[], importe: number, idusuario: number) {
+    return this.http.post(`${base_url}/venta/agregar-venta`, { producto: productos, importe: importe, idusuario: idusuario }, this.headers);
   }
 }

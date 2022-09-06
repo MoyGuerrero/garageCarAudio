@@ -13,7 +13,7 @@ export class SidebarService {
     },
     {
       titulo: 'Ventas',
-      icon: '',
+      icon: 'fas fa-shopping-cart',
       path: 'ventas'
     },
     {
