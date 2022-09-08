@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { UsuariosService } from './services/usuarios.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private usuarioServices: UsuariosService) { }
+  @HostListener('window:close') closeNavigator() {
+    this.usuarioServices.closedNavigator();
+  }
   title = 'garageCarAudio';
 }

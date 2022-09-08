@@ -49,4 +49,8 @@ export class UsuariosService {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
   }
+
+  closedNavigator() {
+    localStorage.removeItem('token');
+  }
 }

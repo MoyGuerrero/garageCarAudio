@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" [formGroup]="productForm" autocomplete="off" (ngSubmit)="Guardar();">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Codigo
+                            Producto</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" formControlName="codigo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" formControlName="nombre_producto">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Stock</label>
+                        <div class="col-sm-9">
+                            <input type="number" min="1" value="1" class="form-control" formControlName="stock">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email1" class="col-sm-3 text-end control-label col-form-label">Talla</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" formControlName="talla">
+                                <option value="0" selected disabled>Seleccionar</option>
+                                <option value="S">Pequeña</option>
+                                <option value="M">Mediana</option>
+                                <option value="L">Grande</option>
+                                <option value="XL">Extra Grande</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Precio</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" formControlName="idprecio">
+                                <option value="0" selected disabled>Seleccionar</option>
+                                <option *ngFor="let precio of precios" [value]="precio.id"> {{precio.precio | currency
+                                    }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-lg-4">
+                    <button class="btn btn-success ml-3 mb-3"><i class="fas fa-plus"></i> Nuevo Precio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-tittle text-center">Imagen Producto</h4>
+                <div class="text-center">
+                    <img src="" alt="">
+                </div>
+                <br>
+                <input type="file" (change)="cambiaImagenProducto($event)">
+                <br>
+                <button [disabled]="!imagenProductoSubir" class="btn btn-success text-white btn-ancho mt-2">Guardar
+                    Imagen</button>
+            </div>
+        </div>
+    </div>
+</div>

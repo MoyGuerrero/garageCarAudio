@@ -12,6 +12,8 @@ const base_url = environment.base_url;
 })
 export class ProductosService {
 
+  public producto!: Producto;
+
   constructor(private http: HttpClient) { }
 
   get token(): string {
@@ -30,6 +32,7 @@ export class ProductosService {
     return this.http.get(`${base_url}/producto/${codigo}`, this.headers).pipe(
       map((resp: any) => {
         const { id, codigo, nombre_producto, stock, talla, img, idprecio, activo, precio } = resp.producto;
+        this.producto = new Producto(id, codigo, nombre_producto, stock, talla, idprecio, activo, precio, img)
         const producto = new Producto(id, codigo, nombre_producto, stock, talla, idprecio, activo, precio, img);
         return {
           producto
@@ -38,7 +41,26 @@ export class ProductosService {
     )
   }
 
-  cobrarVenta(productos: any[], importe: number, idusuario: number) {
-    return this.http.post(`${base_url}/venta/agregar-venta`, { producto: productos, importe: importe, idusuario: idusuario }, this.headers);
+  guardarProducto(producto: any) {
+    console.log(producto);
+    return this.http.post(`${base_url}/producto/agregar_producto`, producto, this.headers)
   }
+
+  getProductos() {
+    return this.http.get(`${base_url}/producto/`, this.headers);
+  }
+
+
+
+  /**
+   * Se agrega aqui los http para obtener los precios para no crear otros servicio
+   */
+  getPrecios() {
+    return this.http.get(`${base_url}/precios/`, this.headers)
+  }
+
+
+  // cobrarVenta(productos: any[], importe: number, idusuario: number) {
+  //   return this.http.post(`${base_url}/venta/agregar-venta`, { producto: productos, importe: importe, idusuario: idusuario }, this.headers);
+  // }
 }

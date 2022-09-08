@@ -1,9 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Ventas } from 'src/app/models/ventas.model';
+import Swal from 'sweetalert2';
 import { VentasService } from '../../services/ventas.service';
 
+
+// import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -42,6 +45,18 @@ export class DashboardComponent implements OnInit {
         this.mostrarVentas = res.venta;
       }
     });
+  }
+
+  descargarTicket(ticket: Ventas) {
+    if (ticket.nombre_tickets === null) {
+      return;
+    }
+    console.log(ticket)
+    this.ventasServices.descargar(ticket.nombre_tickets!).subscribe({
+      next: resp => console.log(resp),
+      error: err => Swal.fire('Error', err.error.msg, 'error')
+    });
+    console.log(ticket.nombre_tickets);
   }
 
 }

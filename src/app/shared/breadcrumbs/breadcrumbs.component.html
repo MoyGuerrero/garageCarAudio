@@ -1,23 +1,24 @@
-  <!-- ============================================================== -->
-      <!-- Bread crumb and right sidebar toggle -->
-      <!-- ============================================================== -->
-      <div class="page-breadcrumb">
-        <div class="row">
-          <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Tables</h4>
-            <div class="ms-auto text-end">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    Library
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
-        </div>
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-12 d-flex no-block align-items-center">
+      <h4 *ngIf="titulo !==''" class="page-title">{{titulo}}</h4>
+      <h4 *ngIf="titulo ===''" class="page-title">Dashboard</h4>
+      <div class="ms-auto text-end">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {{titulo}}
+            </li>
+          </ol>
+        </nav>
       </div>
-      <!-- ============================================================== -->
-      <!-- End Bread crumb and right sidebar toggle -->
-      <!-- ============================================================== -->
+    </div>
+  </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->

@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VentasComponent } from './ventas/ventas.component';
+import { ProductosComponent } from './productos/productos.component';
+import { ProductoComponent } from './productos/producto.component';
 
 
 
@@ -14,8 +16,10 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: '', component: DashboardComponent },
-            { path: 'ventas', component: VentasComponent },
+            { path: '', component: DashboardComponent, data: { Titulo: '' } },
+            { path: 'ventas', component: VentasComponent, data: { Titulo: 'Ventas' } },
+            { path: 'productos', component: ProductosComponent, data: { Titulo: 'Productos' } },
+            { path: 'producto/:id', component: ProductoComponent, data: { Titulo: 'Agregar Producto' } },
             // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     },

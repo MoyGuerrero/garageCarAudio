@@ -27,6 +27,10 @@ export class VentasService {
     }
   }
 
+  cobrarVenta(productos: any[], importe: number, idusuario: number) {
+    return this.http.post(`${base_url}/venta/agregar-venta`, { producto: productos, importe: importe, idusuario: idusuario }, this.headers);
+  }
+
 
   buscar_venta(fechas: any) {
     return this.http.post(`${base_url}/venta/buscar-venta`, fechas, this.headers).pipe(
@@ -74,5 +78,10 @@ export class VentasService {
         };
       })
     );
+  }
+
+
+  descargar(nombre_tickets: string) {
+    return this.http.get(`${base_url}/venta/descargar/${nombre_tickets}`, this.headers);
   }
 }

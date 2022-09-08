@@ -7,8 +7,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { SharedModule } from '../shared/shared.module';
-import { BarcodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductosComponent } from './productos/productos.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { ProductoComponent } from './productos/producto.component';
 
 
 
@@ -16,7 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     VentasComponent,
     DashboardComponent,
-    PagesComponent
+    PagesComponent,
+    ProductosComponent,
+    ProductoComponent
   ],
   exports: [
     VentasComponent,
@@ -29,7 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    BarcodeScannerLivestreamModule
+    PipesModule
   ]
 })
 export class PagesModule { }

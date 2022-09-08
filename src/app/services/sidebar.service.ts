@@ -18,7 +18,7 @@ export class SidebarService {
     },
     {
       titulo: 'Productos',
-      icon: '',
+      icon: 'fab fa-product-hunt',
       path: 'productos'
     }
   ]

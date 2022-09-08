@@ -6,12 +6,12 @@ export class Producto {
     constructor(
         public id: number,
         public codigo: string,
-        public nombre: string,
+        public nombre_producto: string,
         public stock: number,
         public talla: number,
         public idprecio: number,
         public activo: boolean,
-        public precios: Precio,
+        public precio: Precio,
         public img?: string,
     ) { }
 }
