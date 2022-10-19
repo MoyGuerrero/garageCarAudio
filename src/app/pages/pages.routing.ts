@@ -20,6 +20,7 @@ const routes: Routes = [
             { path: 'ventas', component: VentasComponent, data: { Titulo: 'Ventas' } },
             { path: 'productos', component: ProductosComponent, data: { Titulo: 'Productos' } },
             { path: 'producto/:id', component: ProductoComponent, data: { Titulo: 'Agregar Producto' } },
+            { path: 'usuario', component: ProductoComponent, data: { Titulo: 'Agregar Producto' } },
             // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     },

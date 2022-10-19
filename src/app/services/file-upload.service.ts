@@ -27,6 +27,6 @@ export class FileUploadService {
   actualizarFoto(archivo: File, tipo: 'producto', id: string | number) {
     const data = new FormData();
     data.append('imagen', archivo)
-    return this.http.put(`${base_url}/upload/${tipo}/${id}`, data, this.headers);
+    return this.http.put(`${base_url}/uploads/${tipo}/${id}`, data, this.headers);
   }
 }

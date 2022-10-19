@@ -3,6 +3,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
 import { ProductosService } from '../../services/productos.service';
 import { VentasService } from '../../services/ventas.service';
+import { MostrarModalService } from '../../services/mostrar-modal.service';
 
 
 interface mostrarProductos {
@@ -25,12 +26,15 @@ export class VentasComponent implements OnInit {
   public cambio: number = 0;
   public idusuario!: number;
 
+  public mostrarProductosModal: boolean = true;
+
   public mostrarProducto: mostrarProductos[] = [];
 
 
   constructor(private ventasService: VentasService,
     private usuarioServices: UsuariosService,
-    private productoServices: ProductosService
+    private productoServices: ProductosService,
+    private mostrarModalService: MostrarModalService
   ) { }
 
 
@@ -45,6 +49,11 @@ export class VentasComponent implements OnInit {
       return;
     }
     const codigo = evento.target.value;
+    this.agregarTablaVenta(codigo);
+    this.codigo = '';
+  }
+
+  agregarTablaVenta(codigo: string) {
     this.productoServices.buscarProducto(codigo).subscribe({
       next: res => {
 
@@ -78,7 +87,6 @@ export class VentasComponent implements OnInit {
       },
       error: err => Swal.fire('Error', err.error.msg, 'error')
     });
-    this.codigo = '';
   }
 
   cobrarVenta() {
@@ -111,5 +119,23 @@ export class VentasComponent implements OnInit {
       error: err => Swal.fire('Error', err.error.msg, 'error')
     });
 
+  }
+  abrirModal() {
+    this.mostrarModalService.abrirModal();
+  }
+
+
+  quitarProducto(producto: mostrarProductos) {
+    if (producto.cantidad > 1) {
+      producto.cantidad -= 1;
+      this.total -= producto.precio
+    } else {
+      this.total -= producto.precio
+      for (let i = 0; i < this.mostrarProducto.length; i++) {
+        if (this.mostrarProducto[i].codigo === producto.codigo) {
+          this.mostrarProducto.splice(i, 1)
+        }
+      }
+    }
   }
 }

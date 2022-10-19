@@ -57,23 +57,26 @@
             </form>
             <div class="row">
                 <div class="col-lg-4">
-                    <button class="btn btn-success ml-3 mb-3"><i class="fas fa-plus"></i> Nuevo Precio</button>
+                    <button class="btn btn-success ml-3 mb-3" (click)="abrirSweetAlert()"><i class="fas fa-plus"></i>
+                        Nuevo Precio</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="estaOculto">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-tittle text-center">Imagen Producto</h4>
                 <div class="text-center">
-                    <img src="" alt="">
+                    <img *ngIf="!imgTemp" class="perfil" (click)="abrirFile();" [src]="imagen | imagen">
+                    <img *ngIf="imgTemp" class="perfil" (click)="abrirFile();" [src]="imgTemp">
                 </div>
                 <br>
-                <input type="file" (change)="cambiaImagenProducto($event)">
+                <input type="file" id="theFile" style="display: none;" (change)="cambiaImagenProducto($event)">
                 <br>
-                <button [disabled]="!imagenProductoSubir" class="btn btn-success text-white btn-ancho mt-2">Guardar
+                <button [disabled]="!imagenProductoSubir" (click)="subirImagen();"
+                    class="btn btn-success text-white btn-ancho mt-2">Guardar
                     Imagen</button>
             </div>
         </div>

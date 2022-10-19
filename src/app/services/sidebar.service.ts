@@ -20,6 +20,11 @@ export class SidebarService {
       titulo: 'Productos',
       icon: 'fab fa-product-hunt',
       path: 'productos'
+    },
+    {
+      titulo: 'Usuarios',
+      icon: '',
+      path: 'usuario'
     }
   ]
 

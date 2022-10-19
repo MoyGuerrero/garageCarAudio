@@ -37,3 +37,13 @@
     width: 100%;
     display: block;
 }
+
+.perfil {
+    max-width: 70%;
+    max-height: auto;
+    cursor: pointer;
+}
+
+.oculto {
+    display: none;
+}

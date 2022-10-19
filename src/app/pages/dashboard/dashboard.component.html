@@ -40,8 +40,8 @@
                                 <td class="text-center"> {{venta.total}} </td>
                                 <td class="text-center"> {{venta.fecha | date: 'dd/MM/yyyy'}} </td>
                                 <td class="text-center">
-                                    <button class="btn btn-success" (click)="descargarTicket(venta)"><i
-                                            class="far fa-file-pdf"></i></button>
+                                    <a id="descargarPDF" class="btn btn-success" (click)="descargarTicket(venta)"><i
+                                            class="far fa-file-pdf"></i></a>
                                 </td>
                                 <td class="text-center"> {{ venta.usuario.nombre }} {{venta.usuario.apellidos}} </td>
                             </tr>
@@ -55,7 +55,6 @@
         <div class="card">
             <div class="card-body">
                 <div>
-
                 </div>
             </div>
         </div>

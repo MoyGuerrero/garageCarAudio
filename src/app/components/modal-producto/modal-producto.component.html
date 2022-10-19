@@ -1,0 +1,59 @@
+<div [class.oculto]="mostrarModalService.ocultarModal">
+    <div class="modal" tabindex="-1" style="display: block;">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccionar producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        (click)="cerrarmodal();"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <small>Buscar producto por nombre o código</small>
+                            <input type="text" class="form-control" name="palabraBuscada" [(ngModel)]="palabraBuscada">
+                        </div>
+                    </div>
+                    <div class="table-responsive mt-3">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Stock</th>
+                                    <th>Precio</th>
+                                    <th class="text-nowrap w100">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let producto of productos | paginado:palabraBuscada:pagina;">
+                                    <td> {{producto.codigo}} </td>
+                                    <td> {{producto.nombre_producto}} </td>
+                                    <td> {{ (producto.stock)}}</td>
+                                    <td> {{producto.precio.precio | currency}} </td>
+                                    <td (click)="productoSeleccionado(producto.codigo);"
+                                        style="color: blue; cursor: pointer;text-decoration: underline;">
+                                        Seleccionar
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row" *ngIf="ocultarBoton();">
+                        <div class="col-lg-6">
+                            <button class="btn btn-success" (click)="prevPage();">Anterior</button>
+                            &nbsp;
+                            <button class="btn btn-success" (click)="nextPage();"
+                                [disabled]="(productos| paginado:palabraBuscada:pagina).length === 0 ">Siguiente</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        (click)="cerrarmodal();">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

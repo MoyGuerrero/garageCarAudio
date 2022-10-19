@@ -11,8 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductosComponent } from './productos/productos.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProductoComponent } from './productos/producto.component';
-
-
+import { ComponentsModule } from '../components/components.module';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { ProductoComponent } from './productos/producto.component';
     DashboardComponent,
     PagesComponent,
     ProductosComponent,
-    ProductoComponent
+    ProductoComponent,
+    UsuariosComponent
   ],
   exports: [
     VentasComponent,
@@ -33,7 +34,8 @@ import { ProductoComponent } from './productos/producto.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { }

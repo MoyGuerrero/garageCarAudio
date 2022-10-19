@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/models/producto.model';
 import { ProductosService } from 'src/app/services/productos.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-productos',
@@ -18,7 +20,8 @@ export class ProductosComponent implements OnInit {
   public palabraBuscada: string = '';
   public pagina: number = 0;
 
-  constructor(private productoServices: ProductosService) { }
+  constructor(private productoServices: ProductosService,
+    private router: Router) { }
 
 
 
@@ -32,7 +35,7 @@ export class ProductosComponent implements OnInit {
 
     this.productoServices.getProductos().subscribe({
       next: (resp: any) => {
-        this.productos = resp.productos;
+        this.productos = resp.producto;
         this.cargando = false;
       }
     })
@@ -58,5 +61,27 @@ export class ProductosComponent implements OnInit {
       this.pagina -= 5;
     }
   }
+
+  changeStatusProduct(value: boolean, id: number) {
+    if (value == false) {
+      this.productoServices.changeStatusProduct(true, id).subscribe({
+        next: (resp: any) => {
+          Swal.fire('Exito', resp.msg, 'success');
+          this.getProductos();
+        },
+        error: err => Swal.fire('Error', err.error.msg, 'error')
+      })
+    } else {
+      this.productoServices.changeStatusProduct(false, id).subscribe({
+        next: (resp: any) => {
+          Swal.fire('Exito', resp.msg, 'success');
+          this.getProductos();
+        },
+        error: err => Swal.fire('Error', err.error.msg, 'error')
+      })
+    }
+  }
+
+
 
 }

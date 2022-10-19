@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivationEnd, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import { filter, map } from 'rxjs/operators';
   styles: [
   ]
 })
-export class BreadcrumbsComponent implements OnDestroy {
+export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
   public titulo: string = '';
 
@@ -20,9 +20,14 @@ export class BreadcrumbsComponent implements OnDestroy {
       this.titulo = Titulo;
     })
   }
+  ngOnInit(): void {
+  }
   ngOnDestroy(): void {
     this.tituloSub$.unsubscribe();
   }
+
+
+
 
 
   getTituloRutaBreadcrumbs() {

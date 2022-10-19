@@ -6,7 +6,7 @@
                     <input type="text" class="form-control text-center col-lg-6" (keyup.enter)="onKeyUp($event);"
                         name="codigo" [(ngModel)]="codigo">
                     <div class="col-lg-6 text-end">
-                        <button class="btn btn-outline-primary">Buscar producto</button>
+                        <button class="btn btn-outline-primary" (click)="abrirModal();">Buscar producto</button>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,9 @@
                                 <td class="text-center"> {{producto.cantidad}} </td>
                                 <!-- <td> </td> -->
                                 <td class="text-center"> {{producto.precio * producto.cantidad}} </td>
-                                <td class="text-center"> </td>
+                                <td class="text-center" (click)="quitarProducto(producto)"> <button
+                                        class="btn btn-danger">Quitar
+                                        producto</button> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -56,10 +58,13 @@
                         [(ngModel)]="cambio">
                 </div>
                 <div class="d-grid gap-2 mt-3">
-                    <button (click)="cobrarVenta();"  class="btn btn-primary btn-block">Cobrar</button>
+                    <button (click)="cobrarVenta();" class="btn btn-primary btn-block">Cobrar</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- <button class="btn btn-danger">Quitar producto</button> -->
 </div>
+
+
+<app-modal-producto (codigoProducto)="agregarTablaVenta($event)"></app-modal-producto>

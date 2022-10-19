@@ -41,13 +41,25 @@ export class ProductosService {
     )
   }
 
-  guardarProducto(producto: any) {
+  guardarProducto(producto: Producto) {
     console.log(producto);
     return this.http.post(`${base_url}/producto/agregar_producto`, producto, this.headers)
   }
 
   getProductos() {
     return this.http.get(`${base_url}/producto/`, this.headers);
+  }
+
+  getProductoEditar(id: number) {
+    return this.http.get(`${base_url}/producto/editar/${id}`, this.headers);
+  }
+
+  editarProductos(producto: any, id: number) {
+    return this.http.post(`${base_url}/producto/editar/producto/${id}`, producto, this.headers);
+  }
+
+  changeStatusProduct(status: boolean, id: number) {
+    return this.http.post(`${base_url}/producto/estatus/${id}`, { activo: status }, this.headers)
   }
 
 
@@ -57,6 +69,10 @@ export class ProductosService {
    */
   getPrecios() {
     return this.http.get(`${base_url}/precios/`, this.headers)
+  }
+
+  postPrecio(precio: number) {
+    return this.http.post(`${base_url}/precios/nuevo_precio`, { precio }, this.headers)
   }
 
 

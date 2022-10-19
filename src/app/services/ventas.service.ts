@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Ventas } from '../models/ventas.model';
 
@@ -82,6 +82,8 @@ export class VentasService {
 
 
   descargar(nombre_tickets: string) {
-    return this.http.get(`${base_url}/venta/descargar/${nombre_tickets}`, this.headers);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json').set('x-token', this.token);
+
+    return this.http.get(`${base_url}/venta/descargar/${nombre_tickets}`, { headers, responseType: 'blob' as 'json' });
   }
 }
