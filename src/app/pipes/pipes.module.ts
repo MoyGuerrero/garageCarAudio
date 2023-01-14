@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { ImagenPipe } from './imagen.pipe';
 import { PaginadoPipe } from './paginado.pipe';
+import { ActivosPipe } from './activos.pipe';
 
 
 
 @NgModule({
   declarations: [
     ImagenPipe,
-    PaginadoPipe
+    PaginadoPipe,
+    ActivosPipe
   ],
   exports: [
     ImagenPipe,
-    PaginadoPipe
+    PaginadoPipe,
+    ActivosPipe
   ]
 })
 export class PipesModule { }

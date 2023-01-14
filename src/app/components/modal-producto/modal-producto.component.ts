@@ -60,5 +60,6 @@ export class ModalProductoComponent implements OnInit {
   productoSeleccionado(codigo: string) {
     this.codigoProducto.emit(codigo);
     this.mostrarModalService.cerrarModal();
+
   }
 }

@@ -14,7 +14,6 @@ export class MostrarModalService {
   get ocultarModal() {
     return this._ocultarModal;
   }
-
   get obtenerProductoVenta() {
     return this._codigo;
   }

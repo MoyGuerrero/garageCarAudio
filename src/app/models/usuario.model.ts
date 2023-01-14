@@ -1,3 +1,5 @@
+import { Rol } from "./Rol.model";
+
 export class Usuario {
     constructor(
         public id: number,
@@ -7,6 +9,7 @@ export class Usuario {
         public password: string,
         public activo: boolean,
         public rol_idrol: number,
+        public rol?: Rol,
         public direccion?: string,
         public telefono?: string,
     ) { }

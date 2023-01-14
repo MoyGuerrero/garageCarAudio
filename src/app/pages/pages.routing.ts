@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ProductoComponent } from './productos/producto.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuarioComponent } from './usuarios/usuario.component';
 
 
 
@@ -18,9 +20,10 @@ const routes: Routes = [
         children: [
             { path: '', component: DashboardComponent, data: { Titulo: '' } },
             { path: 'ventas', component: VentasComponent, data: { Titulo: 'Ventas' } },
-            { path: 'productos', component: ProductosComponent, data: { Titulo: 'Productos' } },
+            { path: 'productos', component: ProductosComponent, data: { Titulo: 'Listado de Productos' } },
             { path: 'producto/:id', component: ProductoComponent, data: { Titulo: 'Agregar Producto' } },
-            { path: 'usuario', component: ProductoComponent, data: { Titulo: 'Agregar Producto' } },
+            { path: 'usuario', component: UsuariosComponent, data: { Titulo: 'Listado de usuario' } },
+            { path: 'usuario/:id', component: UsuarioComponent, data: { Titulo: 'Agregar usuario' } },
             // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     },

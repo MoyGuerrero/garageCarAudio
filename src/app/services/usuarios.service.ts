@@ -20,14 +20,22 @@ export class UsuariosService {
   constructor(private http: HttpClient,
     private router: Router) { }
 
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
+
   validarToken(): Observable<boolean> {
     const token = localStorage.getItem('token') || '';
 
-    return this.http.get(`${base_url}/login/renew`, {
-      headers: {
-        'x-token': token
-      }
-    }).pipe(
+    return this.http.get(`${base_url}/login/renew`,this.headers).pipe(
       tap((resp: any) => {
 
         this.usuario = new Usuario(resp.usuario.id, resp.usuario.nombre, resp.usuario.apellidos, resp.usuario.usuario_, resp.usuario.password, resp.usuario.activo, resp.usuario.rol_idrol, resp.usuario.direccion, resp.usuario.telefono);
@@ -43,6 +51,10 @@ export class UsuariosService {
       .pipe(
         tap((resp: any) => localStorage.setItem('token', resp.token))
       );
+  }
+
+  getUsuarios() {
+    return this.http.get(`${base_url}/usuario/obtener_usuarios`, this.headers);
   }
 
   cerrarSesion() {

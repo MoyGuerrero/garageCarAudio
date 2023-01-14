@@ -37,7 +37,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let venta of mostrarVentas">
-                                <td class="text-center"> {{venta.total}} </td>
+                                <td class="text-center"> {{venta.total | currency}} </td>
                                 <td class="text-center"> {{venta.fecha | date: 'dd/MM/yyyy'}} </td>
                                 <td class="text-center">
                                     <a id="descargarPDF" class="btn btn-success" (click)="descargarTicket(venta)"><i

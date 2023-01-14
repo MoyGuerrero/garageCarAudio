@@ -23,7 +23,7 @@ export class SidebarService {
     },
     {
       titulo: 'Usuarios',
-      icon: '',
+      icon: 'fas fa-users',
       path: 'usuario'
     }
   ]
